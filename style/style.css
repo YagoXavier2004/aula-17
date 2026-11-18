@@ -14,6 +14,7 @@ body {
     align-items: center;
     justify-content: center;
     color: whitesmoke;
+    padding: 20px 0; /* Evita que o card encoste nas bordas em telas pequenas */
 }
 
 /* Estilo base - Mobile First */
@@ -23,15 +24,15 @@ body {
     gap: 1.5rem;
     background-color: #0e131f;
     border-radius: 20px;
-    padding: 20px;
+    padding: 24px;
     width: 90%;
-    min-height: 90vh;
+    max-width: 500px; /* Limita a largura no mobile para não esticar demais */
     border: 1px solid #23304c;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
 
-/* NOVO: Mantém o conteúdo da esquerda organizado em coluna */
+/* Mantém o conteúdo da esquerda organizado em coluna */
 .conteudo-esquerda {
     display: flex;
     flex-direction: column;
@@ -42,33 +43,56 @@ body {
 
 .header-container {
     background-color: rgba(6, 182, 212, 0.15);
-    width: 85%;
-    padding: 20px;
-    border-radius: 20px;
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 16px;
     border: 2px solid #38bdf8;
     color: whitesmoke;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
-.color-font-p {
-    color: rgba(255, 255, 255, 0.575);
-    line-height: 1.5; /* Melhora a leitura do parágrafo */
+.main-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.h1 {
+    text-align: center;
+}
+
+.font-p {
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.6;
+    text-align: center;
+}
+
+.quebra-linha {
+    flex-basis: 100%;
+    height: 0;
 }
 
 .container-formatos {
-    margin-top: 15px;
+    margin-top: 10px;
     color: whitesmoke;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     width: 100%;
+    justify-content: center;
 }
 
 .formato {
     background-color: #23304c;
     border: 1px solid #38bff88a;
-    border-radius: 5px;
-    padding: 4px 8px;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
 }
 
 .footer-container {
@@ -76,58 +100,89 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    width: 100%;
 }
 
 .bnt-jogar {
     background: linear-gradient(to right, #5425ff, #a500e6);
     border: none;
     color: white;
-    padding: 12px 24px;
+    padding: 14px 28px;
     font-size: 1rem;
+    font-weight: bold;
     border-radius: 8px;
-    cursor: pointer; /* Deixa a mãozinha ao passar o mouse */
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.bnt-jogar:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
 }
 
 .img-footer {
-    width: 60%;
-    max-width: 250px;
-    height: auto;
-    margin-top: 20px;
+    width: 100%;
+    max-width: 240px;
+    padding: 20px;
+    object-fit: contain;
 }
 
 /* Tablet */
 @media (min-width: 768px) {
     .layout {
-        flex-direction: column; 
+        max-width: 700px;
         padding: 40px;
     }
+
     .header-container {
-    width: 50%;
-    padding: 20px;
-        
+        width: 70%;
     }
+    .quebra-linha {
+    flex-basis: 0%;
+    height: 0;
+}
 }
 
-/* PC  */
+/* PC */
 @media (min-width: 1024px) {
     .layout {
         max-width: 1000px;
-        min-height: auto; /* Ajusta a altura ao conteúdo no PC */
-        margin: 0 auto;
         flex-direction: row; /* Coloca esquerda e imagem lado a lado */
         justify-content: space-between;
         align-items: center;
         gap: 3rem;
+        padding: 50px;
     }
 
     .conteudo-esquerda {
-        flex: 1; /* Faz o texto ocupar todo o espaço disponível na esquerda */
-        align-items: flex-start; /* Alinha o botão à esquerda */
+        flex: 1;
+        align-items: flex-start; /* Alinha todos os blocos à esquerda */
+    }
+
+    .header-container {
+        width: auto; /* Ajusta a caixa ao tamanho do texto */
+        text-align: left;
+    }
+
+    .main-container {
+        align-items: flex-start; /* Alinha título e parágrafo à esquerda */
+    }
+
+    .h1, .font-p {
+        text-align: left; /* Garante que o texto não fique centralizado */
+    }
+
+    .container-formatos {
+        justify-content: flex-start;
+    }
+
+    .footer-container {
+        align-items: flex-start;
     }
 
     .img-footer {
         width: 40%;
-        max-width: 350px; /* Permite que a imagem fique um pouco maior no PC */
-        margin-top: 0; /* Remove o espaço de cima que era só para o celular */
+        max-width: 350px;
+        padding: 0; /* Remove paddings extras para centralizar perfeitamente */
     }
 }
